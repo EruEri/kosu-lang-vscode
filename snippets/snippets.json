@@ -1,0 +1,123 @@
+{
+    "Cases Branch": {
+        "prefix": [
+            "cases"
+        ],
+        "body": [
+            "cases {", "\tof ${1:condition} => {}", "\telse {}" , "}"
+        ]
+    },
+    "Switch Branch": {
+        "prefix": [
+            "switch"
+        ],
+        "body": [
+            "switch (${1:expr}) {",
+            "\t .$(case) => {}",
+            "}"
+        ]
+    },
+    "Switch wildcard": {
+        "prefix": [
+            "switch wildcard"
+        ],
+        "body": [
+            "switch (${1:expr}) {",
+            "\t .$(case) => {}",
+            "}"
+        ]
+    },
+    "if Branch": {
+        "prefix": [
+            "if"
+        ],
+        "body":[
+            "if (${1:condition}) {}",
+            "else {}"
+        ]
+    },
+    "main": {
+        "prefix": [
+            "main"
+        ],
+        "body": [
+            "fn main() s32 {",
+            "\t$ 0",
+            "}"
+        ]
+    },
+    "main args": {
+        "prefix":[
+            "main args"
+        ],
+        "body": [
+            "fn main(argc: s32, argv: **s8) s32 {",
+            "\t$ 0",
+            "}"
+        ]
+    },
+    "struct": {
+        "prefix": [
+            "struct"
+        ],
+        "body": [
+            "struct ${1:name} {",
+            "\t",
+            "}"
+        ]
+    },
+    "struct generic": {
+        "prefix": [
+            "struct generique"
+        ],
+        "body": [
+            "struct ${1:name}(${2:id}) {",
+            "\t",
+            "}"
+        ]
+    },
+    "enum": {
+        "prefix": [
+            "enum"
+        ],
+        "body": [
+            "enum ${1:name} {",
+            "\t",
+            "}"
+        ]
+    },
+    "enum generic": {
+        "prefix": [
+            "enum generique"
+        ],
+        "body": [
+            "enum ${1:name}(${2:id}) {",
+            "\t",
+            "}"
+        ]
+    },
+    "function declaration": {
+        "prefix": [
+            "func"
+        ],
+        "body": [
+            "fn ${1:fn_name}(${2}) ${3:return_type} {}"
+        ]
+    },
+    "external declaration": {
+        "prefix": [
+            "external func"
+        ],
+        "body": [
+            "external ${1:fn_name}(${2}) ${3:return_type}"
+        ]
+    },
+    "syscall declaration": {
+        "prefix": [
+            "syscall decl"
+        ],
+        "body": [
+            "syscall ${1:name}() ${2:return_type} = ${3: opcode} "
+        ]
+    }
+}
