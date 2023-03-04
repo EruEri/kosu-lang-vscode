@@ -17,14 +17,46 @@
 		},
 		{
 			"include": "#constants"
+		}, 
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#variables"
+		}, 
+		{
+			"include": "#punctuations"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.kosu",
-				"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|$)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword.control.kosu",
+					"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|$)\\b"
+				},
+				{
+					"name": "keyword.operator.boolean.kosu",
+					"match": "(==|!=|<<|>>|<|>|&&|\\|\\|)"
+				}, 
+				{
+					"name": "keyword.operator.arithmetic.kosu",
+					"match": "[+ | - | \\* | \\ | % | & | \\^ | [\\|]]"
+
+				},
+				{
+					"name": "keyword.operator.ge.kosu",
+					"match": "\\b[=>]\\b"
+				},
+				{
+					"name": "keyword.operator.pipe.kosu",
+					"match": "\\b[\\|>]\\b"
+				},
+				{
+					"name": "keyword.operator.affectation.kosu",
+					"match": "[=]"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.kosu",
@@ -43,6 +75,137 @@
 					"comment": "Single line comment",
 					"name": "comment.line.kosu",
 					"match": "\\s*//.*"
+				},{
+					"comment": "Block comment",
+					"name": "comment.block.kosu",
+					"begin": "/\\*(?!\\*)",
+					"end": "\\*/",
+					"patterns": [
+						{
+							"include": "#comments"
+						}
+					]
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"comment": "function declaration",
+					"name": "meta.function.definition.kosu",
+					"match": "\\b[fn]\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.kosu"
+						}
+					}
+				},
+				{
+					"comment": "function call",
+					"name": "meta.function.call.kosu",
+					"begin": "([a-z][A-Z|a-z|0-9|_]*)(?=\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.call.kosu"
+						}
+					},
+					"end": "\\)",
+					"patterns": [
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#constants"
+						}, 
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#variables"
+						}, 
+						{
+							"include": "#punctuations"
+						}
+					]
+				},
+				{
+					"comment": "builtin function",
+					"name": "meta.function.builtin.kosu",
+					"begin": "([?=@][a-z][A-Z|a-z|0-9|_]*)(?=\\()",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.builtin.kosu"
+						}
+					},
+					"end": "\\)",
+					"patterns": [
+						{
+							"include": "#keywords"
+						},
+						{
+							"include": "#strings"
+						},
+						{
+							"include": "#comments"
+						},
+						{
+							"include": "#types"
+						},
+						{
+							"include": "#constants"
+						}, 
+						{
+							"include": "#functions"
+						},
+						{
+							"include": "#variables"
+						}, 
+						{
+							"include": "#punctuations"
+						}
+					]
+				}
+			]
+		},
+		"punctuations": {
+			"patterns": [
+				{
+					"comment": "comma",
+					"name": "punctuation.comma.kosu",
+					"match": ","
+				},
+				{
+					"comment": "semicolon",
+					"name": "punctuation.semicolon.kosu",
+					"match": ";"
+				},
+				{
+					"comment": "colon",
+					"name": "punctuation.colon.kosu",
+					"match": ":"
+				},
+				{
+					"comment": "dollar",
+					"name": "punctuation.dolar.kosu",
+					"match": "\\$"
+				}
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"comment": "variables",
+					"name": "variable.kosu",
+					"match": "\\b[a-z|_][A-Z|a-z|0-9|_]*\\b"
 				}
 			]
 		},
@@ -71,7 +234,7 @@
 				{
 					"comment": "Decimal integer",
 					"name": "constant.numeric.idecimal.kosu",
-					"match": "\\b[0-9][0-9| _]*([us](8|16|32|64))?\\b",
+					"match": "\\b[0-9][0-9_]*([us](8|16|32|64))?\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.numeric.kosu"
@@ -110,7 +273,7 @@
 				}
 			]
 		},
-		"types":{
+		"types": {
 			"patterns": [
 				{
 					"comment": "numeric type",
@@ -120,45 +283,42 @@
 							"name": "entity.name.type.numeric.kosu entity.name.type.builtin.kosu"
 						}
 					}
-
 				},
 				{
 					"comment": "builtin type no numeric type",
 					"match": "(bool|stringl|unit|anyptr)\\b",
 					"captures": {
-						"1": {
+						"0": {
 							"name": "entity.name.type.builtin.kosu"
 						}
 					}
 				},
 				{
 					"comment": "struct declaration",
-					"match": "\\b(struct)\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
-					"captures": {
-						"1": {
+					"begin": "\\b(struct)\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
+					"beginCaptures": {
+						"0": {
 							"name": "keyword.declaration.struct.kosu"
 						},
-						"2": {
+						"1": {
 							"name": "entity.name.type.struct.kosu"
 						}
-
-					}
+					},
+					"end": ""
 				},
 				{
 					"comment": "enum declaration",
 					"match": "\\b(enum)\\s+([a-z][A-Za-z0-9|_]*)\\b",
 					"captures": {
-						"1": {
+						"0": {
 							"name": "keyword.declaration.enum.kosu"
 						},
-						"2": {
+						"1": {
 							"name": "entity.name.type.enum.kosu"
 						}
-
 					}
 				}
 			]
 		}
 	}
-
 }
