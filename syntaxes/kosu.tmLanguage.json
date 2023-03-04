@@ -1,0 +1,164 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"scopeName": "source.kosu",
+	"name": "Kosu",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#constants"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.kosu",
+				"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|$)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.kosu",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.kosu",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"comment": "Single line comment",
+					"name": "comment.line.kosu",
+					"match": "\\s*//.*"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"comment": "Language constant",
+					"name": "constant.language.other.kosu",
+					"match": "\\b[A-Z][A-Z|_|0-9]*\\b"
+				},
+				{
+					"comment": "Language constant module",
+					"name": "constant.language.module-idenfitier.kosu",
+					"match": "\\b[A-Z][a-z|A-Z|_|0-9]*\\b"
+				},
+				{
+					"comment": "Language constant expression",
+					"name": "constant.language.expression.kosu",
+					"match": "\\b(empty|nullptr|true|false)\\b"
+				},
+				{
+					"comment": "Language constant sizeof",
+					"name": "constant.language.sizeof.kosu",
+					"match": "\\b(sizeof)\\b"
+				},
+				{
+					"comment": "Decimal integer",
+					"name": "constant.numeric.idecimal.kosu",
+					"match": "\\b[0-9][0-9| _]*([us](8|16|32|64))?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.kosu"
+						}
+					}
+				},
+				{
+					"comment": "Binary integer",
+					"name": "constant.numeric.binary.kosu",
+					"match": "\\b0[b|B][0|1][0 |1 |_]*([us](8|16|32|64))?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.kosu"
+						}
+					}
+				},
+				{
+					"comment": "Hexadecimal integer",
+					"name": "constant.numeric.hexa.kosu",
+					"match": "\\b0[X|x][0-9|a-f|A-F][0-9|a-f|A-F]*([us](8|16|32|64))?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.kosu"
+						}
+					}
+				},
+				{
+					"comment": "Octal integer",
+					"name": "constant.numeric.octal.kosu",
+					"match": "\\b0[o|O][0-7][0-7 | _]*([us](8|16|32|64))?\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.kosu"
+						}
+					}
+				}
+			]
+		},
+		"types":{
+			"patterns": [
+				{
+					"comment": "numeric type",
+					"match": "(s8|u8|s16|u16|s32|u32|s64|u64|f64)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.numeric.kosu entity.name.type.builtin.kosu"
+						}
+					}
+
+				},
+				{
+					"comment": "builtin type no numeric type",
+					"match": "(bool|stringl|unit|anyptr)\\b",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.builtin.kosu"
+						}
+					}
+				},
+				{
+					"comment": "struct declaration",
+					"match": "\\b(struct)\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.struct.kosu"
+						},
+						"2": {
+							"name": "entity.name.type.struct.kosu"
+						}
+
+					}
+				},
+				{
+					"comment": "enum declaration",
+					"match": "\\b(enum)\\s+([a-z][A-Za-z0-9|_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.declaration.enum.kosu"
+						},
+						"2": {
+							"name": "entity.name.type.enum.kosu"
+						}
+
+					}
+				}
+			]
+		}
+	}
+
+}

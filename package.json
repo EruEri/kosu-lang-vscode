@@ -1,0 +1,25 @@
+{
+  "name": "kosu-language",
+  "displayName": "Kosu Language",
+  "description": "Kosu programming language syntax support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.76.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "kosu",
+      "aliases": ["Kosu", "kosu"],
+      "extensions": [".kosu"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "kosu",
+      "scopeName": "source.kosu",
+      "path": "./syntaxes/kosu.tmLanguage.json"
+    }]
+  }
+}
