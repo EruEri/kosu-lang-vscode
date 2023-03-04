@@ -1,8 +1,12 @@
 {
   "name": "kosu-language",
   "displayName": "Kosu Language",
-  "description": "Kosu programming language syntax support",
+  "description": "Kosu programming language support",
+  "license": "MIT",
   "version": "0.0.1",
+  "bugs": {
+    "url": "https://github.com/EruEri/kosu-lang-vscode/issues"
+  },
   "engines": {
     "vscode": "^1.70.0"
   },
