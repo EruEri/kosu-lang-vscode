@@ -195,8 +195,13 @@
 				},
 				{
 					"comment": "dollar",
-					"name": "punctuation.dolar.kosu",
+					"name": "punctuation.dollar.kosu",
 					"match": "\\$"
+				},
+				{
+					"comment": "dot",
+					"name": "punctuation.dot.kosu",
+					"match": "."
 				}
 			]
 		},

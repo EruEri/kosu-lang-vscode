@@ -13,7 +13,7 @@
         ],
         "body": [
             "switch (${1:expr}) {",
-            "\t .$(case) => {}",
+            "\t .${2:case} => {}",
             "}"
         ]
     },
@@ -23,7 +23,8 @@
         ],
         "body": [
             "switch (${1:expr}) {",
-            "\t .$(case) => {}",
+            "\t .${2:case} => {}",
+            "\t_ => {}" ,
             "}"
         ]
     },
@@ -71,7 +72,7 @@
             "struct generique"
         ],
         "body": [
-            "struct ${1:name}(${2:id}) {",
+            "struct ${1:name}(${2}) {",
             "\t",
             "}"
         ]
@@ -91,7 +92,7 @@
             "enum generique"
         ],
         "body": [
-            "enum ${1:name}(${2:id}) {",
+            "enum ${1:name}(${2}) {",
             "\t",
             "}"
         ]
@@ -117,7 +118,7 @@
             "syscall decl"
         ],
         "body": [
-            "syscall ${1:name}() ${2:return_type} = ${3: opcode} "
+            "syscall ${1:name}(${2}) ${3:return_type} = ${4:opcode} "
         ]
     }
 }

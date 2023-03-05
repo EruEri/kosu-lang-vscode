@@ -10,3 +10,7 @@ Check [Keep a Changelog](https://keepachangelog.com/) for recommendations on how
 
 ### Added
 - Snippets
+
+## [0.2.1]
+- Fix some snippets
+- Add some punctuation tokens

@@ -22,3 +22,8 @@ Users appreciate release notes as you update your extension.
 ### 0.0.1
 
 Initial release of Kosu Language extension
+
+### 0.2.1
+
+- Fix some snippets
+- Add some punctuation tokens
