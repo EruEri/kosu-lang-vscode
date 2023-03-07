@@ -33,7 +33,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.kosu",
-					"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|$)\\b"
+					"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|while)\\b"
 				},
 				{
 					"name": "keyword.operator.boolean.kosu",
@@ -93,7 +93,7 @@
 				{
 					"comment": "function declaration",
 					"name": "meta.function.definition.kosu",
-					"match": "\\b[fn]\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
+					"match": "\\bfn\\s+([a-z][A-Z|a-z|0-9|_]*)\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.kosu"

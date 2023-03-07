@@ -23,8 +23,19 @@
         ],
         "body": [
             "switch (${1:expr}) {",
-            "\t .${2:case} => {}",
+            "\t.${2:case} => {}",
             "\t_ => {}" ,
+            "}"
+        ]
+    },
+    "While loop": {
+        "prefix": [
+            "while"
+        ],
+        "body": [
+            "while (${1:condition}) {",
+            "\t",
+            "\t$ empty",
             "}"
         ]
     },

@@ -27,3 +27,7 @@ Initial release of Kosu Language extension
 
 - Fix some snippets
 - Add some punctuation tokens
+
+### 0.3.0
+- Fix switch snippet
+- Add support for while loop expression
