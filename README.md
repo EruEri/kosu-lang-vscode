@@ -35,4 +35,4 @@ Initial release of Kosu Language extension
 ### 0.4.0
 - Add order type and constant
 - Add single quoted character
-- Add or
+- Add ```or``` + ```and``` keywords operator

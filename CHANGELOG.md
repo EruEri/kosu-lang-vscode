@@ -22,4 +22,4 @@ Check [Keep a Changelog](https://keepachangelog.com/) for recommendations on how
 ### [0.4.0]
 - Add order type and constant
 - Add single quoted character
-- Add ```or``` + ```and``` keywords
+- Add ```or``` + ```and``` keywords operator
