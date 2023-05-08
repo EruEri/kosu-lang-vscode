@@ -31,3 +31,8 @@ Initial release of Kosu Language extension
 ### 0.3.0
 - Fix switch snippet
 - Add support for while loop expression
+
+### 0.4.0
+- Add order type and constant
+- Add single quoted character
+- Add or

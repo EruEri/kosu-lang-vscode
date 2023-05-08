@@ -17,15 +17,18 @@
 		},
 		{
 			"include": "#constants"
-		}, 
+		},
 		{
 			"include": "#functions"
 		},
 		{
 			"include": "#variables"
-		}, 
+		},
 		{
 			"include": "#punctuations"
+		},
+		{
+			"include": "#escape"
 		}
 	],
 	"repository": {
@@ -38,11 +41,18 @@
 				{
 					"name": "keyword.operator.boolean.kosu",
 					"match": "(==|!=|<<|>>|<|>|&&|\\|\\|)"
-				}, 
+				},
 				{
 					"name": "keyword.operator.arithmetic.kosu",
 					"match": "[+ | - | \\* | \\ | % | & | \\^ | [\\|]]"
-
+				},
+				{
+					"name": "keyword.operator.or.kosu",
+					"match": "\\b(or)\\b"
+				},
+				{
+					"name": "keyword.operator.and.kosu",
+					"match": "\\b(and)\\b"
 				},
 				{
 					"name": "keyword.operator.ge.kosu",
@@ -58,14 +68,55 @@
 				}
 			]
 		},
-		"strings": {
-			"name": "string.quoted.double.kosu",
-			"begin": "\"",
-			"end": "\"",
+		"escape": {
 			"patterns": [
 				{
 					"name": "constant.character.escape.kosu",
-					"match": "\\\\."
+					"match": "(\\\\)(?:(?:(x[0-7a-fA-F]{2})))",
+					"captures": {
+						"1": {
+							"name": "constant.character.escape.backslash.kosu"
+						},
+						"2": {
+							"name": "constant.character.escape.bit.kosu"
+						},
+						"3": {
+							"name": "constant.character.escape.hex.kosu"
+						}
+					}
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.kosu",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.kosu",
+							"match": "(\\\\)[n|r|t|\\|\"|']",
+							"captures": {
+								"1": {
+									"name": "constant.character.escape.backslash.kosu"
+								}
+							}
+						},
+						{
+							"include": "#escape"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.kosu",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"include": "#escape"
+						}
+					]
 				}
 			]
 		},
@@ -75,7 +126,8 @@
 					"comment": "Single line comment",
 					"name": "comment.line.kosu",
 					"match": "\\s*//.*"
-				},{
+				},
+				{
 					"comment": "Block comment",
 					"name": "comment.block.kosu",
 					"begin": "/\\*(?!\\*)",
@@ -125,13 +177,13 @@
 						},
 						{
 							"include": "#constants"
-						}, 
+						},
 						{
 							"include": "#functions"
 						},
 						{
 							"include": "#variables"
-						}, 
+						},
 						{
 							"include": "#punctuations"
 						}
@@ -162,13 +214,13 @@
 						},
 						{
 							"include": "#constants"
-						}, 
+						},
 						{
 							"include": "#functions"
 						},
 						{
 							"include": "#variables"
-						}, 
+						},
 						{
 							"include": "#punctuations"
 						}
@@ -229,7 +281,7 @@
 				{
 					"comment": "Language constant expression",
 					"name": "constant.language.expression.kosu",
-					"match": "\\b(empty|nullptr|true|false)\\b"
+					"match": "\\b(empty|nullptr|true|false|eq|lt|gt)\\b"
 				},
 				{
 					"comment": "Language constant sizeof",
@@ -282,7 +334,7 @@
 			"patterns": [
 				{
 					"comment": "numeric type",
-					"match": "(s8|u8|s16|u16|s32|u32|s64|u64|f64)\\b",
+					"match": "(s8|u8|s16|u16|s32|u32|s64|u64|f64|f32)\\b",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.numeric.kosu entity.name.type.builtin.kosu"
@@ -291,7 +343,7 @@
 				},
 				{
 					"comment": "builtin type no numeric type",
-					"match": "(bool|stringl|unit|anyptr)\\b",
+					"match": "(bool|stringl|unit|anyptr|order)\\b",
 					"captures": {
 						"0": {
 							"name": "entity.name.type.builtin.kosu"

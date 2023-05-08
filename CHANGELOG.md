@@ -18,3 +18,8 @@ Check [Keep a Changelog](https://keepachangelog.com/) for recommendations on how
 ### [0.3.0]
 - Fix switch snippet
 - Add support for while loop expression
+
+### [0.4.0]
+- Add order type and constant
+- Add single quoted character
+- Add ```or``` + ```and``` keywords
