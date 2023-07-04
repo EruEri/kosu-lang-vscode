@@ -36,7 +36,11 @@
 			"patterns": [
 				{
 					"name": "keyword.control.kosu",
-					"match": "\\b(cases|const|enum|external|discard|else|fn|struct|syscall|of|operator|switch|if|var|while)\\b"
+					"match": "\\b(cases|const|enum|external|discard|else|fn|match|struct|syscall|of|operator|switch|if|var|while)\\b"
+				},
+				{
+					"name": "keyword.array.kosu",
+					"match": "\\b(array)\\b"
 				},
 				{
 					"name": "keyword.operator.boolean.kosu",
@@ -61,6 +65,10 @@
 				{
 					"name": "keyword.operator.pipe.kosu",
 					"match": "\\b[\\|>]\\b"
+				},
+				{
+					"name": "keyword.operator.spaceship.kosu",
+					"match": "\\b[\\<\\=\\>]\\b"
 				},
 				{
 					"name": "keyword.operator.affectation.kosu",
@@ -287,6 +295,11 @@
 					"comment": "Language constant sizeof",
 					"name": "constant.language.sizeof.kosu",
 					"match": "\\b(sizeof)\\b"
+				},
+				{
+					"comment": "Language constant addressof",
+					"name": "constant.language.addressof.kosu",
+					"match": "\\b(addressof)\\b"
 				},
 				{
 					"comment": "Decimal integer",
